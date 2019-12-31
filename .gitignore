@@ -1,0 +1,17 @@
+local.properties
+build/
+bin/
+gen/
+proguard/
+.metadata/
+.gradle/
+.idea/libraries/
+.idea/caches/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/datasources.xml
+.idea/dataSources.ids
+*.apk
+*.ap_
+*.dex
+*.class
