@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.android.bluetoothchat;
+package com.jdrake.apps.watchnotify;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-
-import com.example.android.common.logger.Log;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,9 +33,9 @@ import java.util.UUID;
  * incoming connections, a thread for connecting with a device, and a
  * thread for performing data transmissions when connected.
  */
-public class BluetoothChatService {
+public class BluetoothCommService {
     // Debugging
-    private static final String TAG = "BluetoothChatService";
+    private static final String TAG = "BluetoothCommService";
 
     // Unique UUID for this application
     private static final UUID MY_UUID_SECURE =
@@ -62,7 +58,7 @@ public class BluetoothChatService {
      *
      * @param context The UI Activity Context
      */
-    public BluetoothChatService(Context context) {
+    public BluetoothCommService(Context context) {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mState = STATE_NONE;
         mNewState = mState;
@@ -229,7 +225,7 @@ public class BluetoothChatService {
             }
 
             // Reset the ConnectThread because we're done
-            synchronized (BluetoothChatService.this) {
+            synchronized (BluetoothCommService.this) {
                 mConnectThread = null;
             }
 

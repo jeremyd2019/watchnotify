@@ -1,4 +1,4 @@
-package com.example.android.bluetoothchat;
+package com.jdrake.apps.watchnotify;
 
 import android.app.Notification;
 import android.bluetooth.BluetoothAdapter;
@@ -23,7 +23,7 @@ import java.util.Locale;
 
 public class NotificationListener extends NotificationListenerService implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "NotificationListener";
-    private BluetoothChatService mService;
+    private BluetoothCommService mService;
     private SimpleDateFormat mDateFormat;
     private SharedPreferences mPrefs;
     private BluetoothDevice mDevice = null;
@@ -34,7 +34,7 @@ public class NotificationListener extends NotificationListenerService implements
         mDateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US);
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (adapter != null) {
-            mService = new BluetoothChatService(this);
+            mService = new BluetoothCommService(this);
             mPrefs = getSharedPreferences("BTPREFS", Context.MODE_PRIVATE);
             mPrefs.registerOnSharedPreferenceChangeListener(this);
             String address = mPrefs.getString("ConnectedDevice", "");
@@ -165,9 +165,9 @@ public class NotificationListener extends NotificationListenerService implements
     }
 
     private void ensureConnected() {
-        if (mService.getState() == BluetoothChatService.STATE_NONE) {
+        if (mService.getState() == BluetoothCommService.STATE_NONE) {
             mService.connect(mDevice);
-            for (int i = 0; i < 10 && mService.getState() != BluetoothChatService.STATE_CONNECTED; ++i)
+            for (int i = 0; i < 10 && mService.getState() != BluetoothCommService.STATE_CONNECTED; ++i)
             {
                 try {
                     Thread.sleep(500);

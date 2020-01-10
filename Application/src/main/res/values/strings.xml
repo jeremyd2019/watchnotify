@@ -31,6 +31,5 @@
 
     <!-- Options Menu -->
     <string name="secure_connect">Connect a device</string>
-    <string name="service_name">Watch Notification Service</string>
 
 </resources>
